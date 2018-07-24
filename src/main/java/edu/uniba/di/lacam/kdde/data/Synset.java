@@ -39,7 +39,7 @@ public class Synset {
         synsets = new HashMap<>();
         Document doc = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(SYNSET);
         doc.getDocumentElement().normalize();
-        for (String pos : posTags.keySet()) {
+        posTags.keySet().forEach(pos -> {
             Map<Integer, String> synset = new HashMap<>();
             NodeList synList = ((Element) doc.getElementsByTagName(pos + "-syn-list").item(0))
                     .getElementsByTagName(pos + "-syn");
@@ -53,7 +53,7 @@ public class Synset {
                 }
             }
             synsets.put(posTags.get(pos), synset);
-        }
+        });
     }
 
     public static Synset getInstance() {

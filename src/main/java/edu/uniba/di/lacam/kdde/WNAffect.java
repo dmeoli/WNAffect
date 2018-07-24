@@ -55,8 +55,4 @@ public class WNAffect {
         }
         return null;
     }
-
-    public static void main(String[] args) {
-        System.out.println(new WNAffect(false).getEmotion("angry", POS.ADJECTIVE));
-    }
 }
