@@ -1,7 +1,7 @@
 package edu.uniba.di.lacam.kdde.demo;
 
+import edu.mit.jwi.item.POS;
 import edu.uniba.di.lacam.kdde.WNAffect;
-import edu.uniba.di.lacam.kdde.item.POS;
 
 public class WNAffectDemo {
 

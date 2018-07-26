@@ -1,7 +1,7 @@
 package edu.uniba.di.lacam.kdde.data;
 
 import com.google.common.collect.ImmutableMap;
-import edu.uniba.di.lacam.kdde.item.POS;
+import edu.mit.jwi.item.POS;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
@@ -45,12 +45,11 @@ public class Synset {
                     .getElementsByTagName(pos + "-syn");
             for (int i = 0; i < synList.getLength(); i++) {
                 Element syn = (Element) synList.item(i);
-                if (!syn.getAttribute("categ").isEmpty()) {
+                if (!syn.getAttribute("categ").isEmpty())
                     synset.put(Integer.parseInt(syn.getAttribute("id").substring(2)), syn.getAttribute("categ"));
-                } else if (!syn.getAttribute("noun-id").isEmpty()) {
+                else if (!syn.getAttribute("noun-id").isEmpty())
                     synset.put(Integer.parseInt(syn.getAttribute("id").substring(2)),
                             synsets.get(POS.NOUN).get(Integer.parseInt(syn.getAttribute("noun-id").substring(2))));
-                }
             }
             synsets.put(posTags.get(pos), synset);
         });

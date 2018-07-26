@@ -5,7 +5,7 @@ import edu.mit.jwi.RAMDictionary;
 import edu.mit.jwi.data.ILoadPolicy;
 import edu.mit.jwi.item.IIndexWord;
 import edu.mit.jwi.item.IWordID;
-import edu.uniba.di.lacam.kdde.item.POS;
+import edu.mit.jwi.item.POS;
 import edu.uniba.di.lacam.kdde.util.Log;
 
 import java.io.File;
