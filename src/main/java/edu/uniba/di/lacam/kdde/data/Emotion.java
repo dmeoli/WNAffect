@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.*;
 
-public class Emotion {
+final public class Emotion {
 
     private static final InputStream EMOTION = Emotion.class.getResourceAsStream(File.separator + "a-hierarchy.xml");
 

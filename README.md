@@ -352,7 +352,7 @@ and declare this github repo as a dependency:
         <dependency>
             <groupId>com.github.DonatoMeoli</groupId>
             <artifactId>WNAffect</artifactId>
-            <version>-SNAPSHOT</version>
+            <version>master-SNAPSHOT</version>
         </dependency>
     </dependencies>
     

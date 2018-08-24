@@ -16,7 +16,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
-public class Synset {
+final public class Synset {
 
     private static final InputStream SYNSET = Synset.class.getResourceAsStream(File.separator + "a-synsets-30.xml");
 
