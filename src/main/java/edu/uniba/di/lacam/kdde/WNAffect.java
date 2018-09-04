@@ -8,6 +8,7 @@ import edu.mit.jwi.item.IWordID;
 import edu.mit.jwi.item.POS;
 import edu.uniba.di.lacam.kdde.data.Synset;
 import edu.uniba.di.lacam.kdde.util.Log;
+import edu.uniba.di.lacam.kdde.util.WNAffectConfiguration;
 
 import java.io.File;
 import java.io.IOException;
@@ -21,9 +22,11 @@ public class WNAffect {
 
     private static IRAMDictionary dict;
 
-    public WNAffect(boolean memoryDB) {
+    private static WNAffect wnAffect = new WNAffect();
+
+    private WNAffect() {
         try {
-            if (memoryDB) {
+            if (WNAffectConfiguration.getInstance().useMemoryDB()) {
                 Log.info("Loading WordNet into memory...");
                 long t = System.currentTimeMillis();
                 dict = new RAMDictionary(new URL("file", null, WORDNET_PATH), ILoadPolicy.IMMEDIATE_LOAD);
@@ -36,6 +39,10 @@ public class WNAffect {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public static WNAffect getInstance() {
+        return wnAffect;
     }
 
     private List<IWordID> getSynsets(String lemma, POS pos) {
