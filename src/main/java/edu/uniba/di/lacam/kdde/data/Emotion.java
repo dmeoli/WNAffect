@@ -16,7 +16,7 @@ final public class Emotion {
 
     private static final InputStream EMOTION = Emotion.class.getResourceAsStream(File.separator + "a-hierarchy.xml");
 
-    private Map<String, String> emotions;
+    private static Map<String, String> emotions;
 
     private static final Emotion emotion = new Emotion();
 

@@ -6,6 +6,7 @@ import edu.mit.jwi.data.ILoadPolicy;
 import edu.mit.jwi.item.IIndexWord;
 import edu.mit.jwi.item.IWordID;
 import edu.mit.jwi.item.POS;
+import edu.uniba.di.lacam.kdde.data.Synset;
 import edu.uniba.di.lacam.kdde.util.Log;
 
 import java.io.File;
@@ -16,13 +17,9 @@ import java.util.List;
 
 public class WNAffect {
 
-    private static IRAMDictionary dict;
-
     private static final String WORDNET_PATH = System.getProperty("user.dir") + File.separator + "dict";
 
-    public WNAffect(IRAMDictionary dict) {
-        WNAffect.dict = dict;
-    }
+    private static IRAMDictionary dict;
 
     public WNAffect(boolean memoryDB) {
         try {
@@ -42,7 +39,7 @@ public class WNAffect {
     }
 
     private List<IWordID> getSynsets(String lemma, POS pos) {
-        IIndexWord indexWord = dict.getIndexWord(lemma, edu.mit.jwi.item.POS.getPartOfSpeech(pos.getTag()));
+        IIndexWord indexWord = dict.getIndexWord(lemma, POS.getPartOfSpeech(pos.getTag()));
         return indexWord != null ? indexWord.getWordIDs() : Collections.emptyList();
     }
 
@@ -50,8 +47,8 @@ public class WNAffect {
         List<IWordID> synsets = getSynsets(lemma, pos);
         for (IWordID synset : synsets) {
             int offset = synset.getSynsetID().getOffset();
-            if (edu.uniba.di.lacam.kdde.data.Synset.getInstance().getOffsets(pos).contains(offset))
-                return edu.uniba.di.lacam.kdde.data.Synset.getInstance().getEmotion(pos, offset);
+            if (Synset.getInstance().getOffsets(pos).contains(offset))
+                return Synset.getInstance().getEmotion(pos, offset);
         }
         return null;
     }

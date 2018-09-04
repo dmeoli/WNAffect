@@ -23,7 +23,7 @@ final public class Synset {
     private static final ImmutableMap<String, POS> posTags = ImmutableMap.of(
             "noun", POS.NOUN, "adj", POS.ADJECTIVE, "verb", POS.VERB, "adv", POS.ADVERB);
 
-    private Map<POS, Map<Integer, String>> synsets;
+    private static Map<POS, Map<Integer, String>> synsets;
 
     private static final Synset synset = new Synset();
 
