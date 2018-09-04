@@ -35,7 +35,7 @@ final public class Synset {
         }
     }
 
-    private synchronized void loadSynsets() throws ParserConfigurationException, IOException, SAXException {
+    private void loadSynsets() throws ParserConfigurationException, IOException, SAXException {
         synsets = new HashMap<>();
         Document doc = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(SYNSET);
         doc.getDocumentElement().normalize();

@@ -28,7 +28,7 @@ final public class Emotion {
         }
     }
 
-    private synchronized void loadEmotions() throws ParserConfigurationException, IOException, SAXException {
+    private void loadEmotions() throws ParserConfigurationException, IOException, SAXException {
         emotions = new HashMap<>();
         Document doc = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(EMOTION);
         doc.getDocumentElement().normalize();
