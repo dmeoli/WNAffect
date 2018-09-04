@@ -17,17 +17,16 @@
 
     <repositories>
         <repository>
-            <id>wn-affect</id>
-            <name>wn-affect-repo</name>
-            <url>file://${project.basedir}/lib</url>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
         </repository>
     </repositories>
 
     <dependencies>
         <dependency>
-            <groupId>edu.mit.csail</groupId>
+            <groupId>com.github.rm-hull</groupId>
             <artifactId>jwi</artifactId>
-            <version>2.4.0</version>
+            <version>7d37b0d23d</version>
         </dependency>
         <dependency>
             <groupId>com.google.guava</groupId>
