@@ -17,7 +17,7 @@ import java.net.URL;
 import java.util.Collections;
 import java.util.List;
 
-public class WNAffect {
+final public class WNAffect {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(WNAffect.class);
 

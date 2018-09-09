@@ -328,7 +328,7 @@ By default, requirement for compilation are:
 
 ## Built with Maven
 
-To create a jar file with dependencies including resource and config files:
+To create a jar file with dependencies including resource files:
 
 ```
 $ mvn install

@@ -1,6 +1,6 @@
 package edu.uniba.di.lacam.kdde.util;
 
-public class WNAffectConfiguration {
+final public class WNAffectConfiguration {
 
     private boolean memoryDB;
     private boolean trace;
