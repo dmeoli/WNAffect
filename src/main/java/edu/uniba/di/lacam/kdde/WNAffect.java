@@ -7,8 +7,9 @@ import edu.mit.jwi.item.IIndexWord;
 import edu.mit.jwi.item.IWordID;
 import edu.mit.jwi.item.POS;
 import edu.uniba.di.lacam.kdde.data.Synset;
-import edu.uniba.di.lacam.kdde.util.Log;
 import edu.uniba.di.lacam.kdde.util.WNAffectConfiguration;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.IOException;
@@ -17,6 +18,8 @@ import java.util.Collections;
 import java.util.List;
 
 public class WNAffect {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(WNAffect.class);
 
     private static final String WORDNET_PATH = System.getProperty("user.dir") + File.separator + "dict";
 
@@ -27,11 +30,12 @@ public class WNAffect {
     private WNAffect() {
         try {
             if (WNAffectConfiguration.getInstance().useMemoryDB()) {
-                Log.info("Loading WordNet into memory...");
+                if (WNAffectConfiguration.getInstance().useTrace()) LOGGER.info("Loading WordNet into memory...");
                 long t = System.currentTimeMillis();
                 dict = new RAMDictionary(new URL("file", null, WORDNET_PATH), ILoadPolicy.IMMEDIATE_LOAD);
                 dict.open();
-                Log.info("WordNet loaded into memory in %d sec.", (System.currentTimeMillis()-t) / 1000L);
+                if (WNAffectConfiguration.getInstance().useTrace())  LOGGER.info("WordNet loaded into memory in {} sec.",
+                        (System.currentTimeMillis()-t) / 1000L);
             } else {
                 dict = new RAMDictionary(new URL("file", null, WORDNET_PATH), ILoadPolicy.NO_LOAD);
                 dict.open();
