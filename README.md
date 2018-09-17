@@ -331,7 +331,7 @@ By default, requirement for compilation are:
 To create a jar file with dependencies including resource files:
 
 ```
-$ mvn install
+$ mvn install assembly:single
 ```
 
 ## Using WNAffect
