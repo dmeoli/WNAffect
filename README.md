@@ -337,8 +337,7 @@ $ mvn install assembly:single
 ## Using WNAffect
 
 When using WNAffect jar package from other projects, make sure to also include depending libraries and 
-[WordNet 3.0](https://wordnet.princeton.edu/download/current-version) or 
-[lower](https://wordnet.princeton.edu/download/old-versions) dict folder into the root of your project. 
+[WordNet 3.0](https://wordnet.princeton.edu/download/current-version) dict folder into the root of your project. 
 Add the [JitPack](https://jitpack.io/) repository to your POM file:
 
     <repositories>

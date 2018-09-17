@@ -21,7 +21,7 @@ final public class WNAffect {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(WNAffect.class);
 
-    private static final String WORDNET_PATH = System.getProperty("user.dir") + File.separator + "dict";
+    private static final String WORDNET = System.getProperty("user.dir") + File.separator + "dict";
 
     private static IRAMDictionary dict;
 
@@ -32,12 +32,12 @@ final public class WNAffect {
             if (WNAffectConfiguration.getInstance().useMemoryDB()) {
                 if (WNAffectConfiguration.getInstance().useTrace()) LOGGER.info("Loading WordNet into memory...");
                 long t = System.currentTimeMillis();
-                dict = new RAMDictionary(new URL("file", null, WORDNET_PATH), ILoadPolicy.IMMEDIATE_LOAD);
+                dict = new RAMDictionary(new URL("file", null, WORDNET), ILoadPolicy.IMMEDIATE_LOAD);
                 dict.open();
                 if (WNAffectConfiguration.getInstance().useTrace())  LOGGER.info("WordNet loaded into memory in {} sec.",
                         (System.currentTimeMillis()-t) / 1000L);
             } else {
-                dict = new RAMDictionary(new URL("file", null, WORDNET_PATH), ILoadPolicy.NO_LOAD);
+                dict = new RAMDictionary(new URL("file", null, WORDNET), ILoadPolicy.NO_LOAD);
                 dict.open();
             }
         } catch (IOException e) {
