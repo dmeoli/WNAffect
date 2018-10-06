@@ -44,4 +44,8 @@ final public class Emotion {
     public static Emotion getInstance() {
         return emotion;
     }
+
+    public String getParent(String emotion) {
+        return emotions.get(emotion);
+    }
 }

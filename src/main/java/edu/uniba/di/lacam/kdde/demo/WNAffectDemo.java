@@ -13,5 +13,6 @@ public class WNAffectDemo {
 
     public static void main(String[] args) {
         System.out.println(WNAffect.getInstance().getEmotion("angry", POS.ADJECTIVE));
+        System.out.println(WNAffect.getInstance().getParent("anger", 5));
     }
 }
