@@ -7,14 +7,13 @@ import org.xml.sax.SAXException;
 
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.*;
 
 final public class Emotion {
 
-    private static final InputStream EMOTION = Emotion.class.getResourceAsStream(File.separator + "a-hierarchy.xml");
+    private static final InputStream EMOTION = Emotion.class.getClassLoader().getResourceAsStream("a-hierarchy.xml");
 
     private static Map<String, String> emotions;
 

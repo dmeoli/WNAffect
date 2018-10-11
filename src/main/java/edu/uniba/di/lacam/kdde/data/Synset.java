@@ -9,7 +9,6 @@ import org.xml.sax.SAXException;
 
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
@@ -18,7 +17,7 @@ import java.util.Set;
 
 final public class Synset {
 
-    private static final InputStream SYNSET = Synset.class.getResourceAsStream(File.separator + "a-synsets-30.xml");
+    private static final InputStream SYNSET = Synset.class.getClassLoader().getResourceAsStream("a-synsets-30.xml");
 
     private static final ImmutableMap<String, POS> posTags = ImmutableMap.of(
             "noun", POS.NOUN, "adj", POS.ADJECTIVE, "verb", POS.VERB, "adv", POS.ADVERB);
