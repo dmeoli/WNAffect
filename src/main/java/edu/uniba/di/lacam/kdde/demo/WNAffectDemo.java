@@ -8,11 +8,12 @@ public class WNAffectDemo {
 
     static {
         WNAffectConfiguration.getInstance().setMemoryDB(false);
-        WNAffectConfiguration.getInstance().setTrace(true);
     }
 
     public static void main(String[] args) {
+        long t = System.currentTimeMillis();
         System.out.println(WNAffect.getInstance().getEmotion("angry", POS.ADJECTIVE));
         System.out.println(WNAffect.getInstance().getParent("anger", 5));
+        System.out.println("\nDone in " + (System.currentTimeMillis() - t) + " msec.");
     }
 }

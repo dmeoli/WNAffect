@@ -13,7 +13,6 @@ import edu.uniba.di.lacam.kdde.util.WNAffectConfiguration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -24,7 +23,7 @@ final public class WNAffect {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(WNAffect.class);
 
-    private static final String WORDNET = System.getProperty("user.dir") + File.separator + "dict";
+    private static final URL WORDNET = WNAffect.class.getClassLoader().getResource("wn30.dict");
 
     private static IRAMDictionary dict;
 
@@ -38,16 +37,15 @@ final public class WNAffect {
         }
     }
 
-    synchronized private void loadWordNet() throws IOException {
+    private void loadWordNet() throws IOException {
         if (WNAffectConfiguration.getInstance().useMemoryDB()) {
-            if (WNAffectConfiguration.getInstance().useTrace()) LOGGER.info("Loading WordNet into memory...");
+            LOGGER.info("Loading WordNet into memory...");
             long t = System.currentTimeMillis();
-            dict = new RAMDictionary(new URL("file", null, WORDNET), ILoadPolicy.IMMEDIATE_LOAD);
+            dict = new RAMDictionary(WORDNET, ILoadPolicy.IMMEDIATE_LOAD);
             dict.open();
-            if (WNAffectConfiguration.getInstance().useTrace()) LOGGER.info("WordNet loaded into memory in {} sec.",
-                    (System.currentTimeMillis() - t) / 1000L);
+            LOGGER.info("WordNet loaded into memory in {} sec.", (System.currentTimeMillis() - t) / 1000L);
         } else {
-            dict = new RAMDictionary(new URL("file", null, WORDNET), ILoadPolicy.NO_LOAD);
+            dict = new RAMDictionary(WORDNET, ILoadPolicy.NO_LOAD);
             dict.open();
         }
     }
