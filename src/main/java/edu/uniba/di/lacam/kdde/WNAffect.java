@@ -75,7 +75,7 @@ final public class WNAffect {
     }
 
     public String getParent(String emotion, int level) {
-        if (emotion == null || emotion.equals("root") || level < 0) return null;
+        if (emotion == null || emotion.equalsIgnoreCase("root") || level < 0) return null;
         if (WNAffectConfiguration.getInstance().useCache()) {
             List<String> path = emotionsPath.get(emotion);
             if (Objects.nonNull(path)) {
