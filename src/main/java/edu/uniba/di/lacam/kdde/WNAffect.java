@@ -18,6 +18,9 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
 
 final public class WNAffect {
 
@@ -26,6 +29,7 @@ final public class WNAffect {
     private static final URL WORDNET = WNAffect.class.getClassLoader().getResource("wn30.dict");
 
     private static IRAMDictionary dict;
+    private static ConcurrentMap<String, List<String>> emotionsPath;
 
     private static WNAffect wnAffect = new WNAffect();
 
@@ -35,6 +39,7 @@ final public class WNAffect {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        if (WNAffectConfiguration.getInstance().useCache()) emotionsPath = new ConcurrentHashMap<>();
     }
 
     private void loadWordNet() throws IOException {
@@ -70,7 +75,14 @@ final public class WNAffect {
     }
 
     public String getParent(String emotion, int level) {
-        if ((emotion == null) || level < 0) return null;
+        if (emotion == null || emotion.equals("root") || level < 0) return null;
+        if (WNAffectConfiguration.getInstance().useCache()) {
+            List<String> path = emotionsPath.get(emotion);
+            if (Objects.nonNull(path)) {
+                if (level >= path.size()) return path.get(path.size() - 1);
+                else return path.get(level);
+            }
+        }
         List<String> parents = new ArrayList<>();
         parents.add(emotion);
         String parent = Emotion.getInstance().getParent(emotion);
@@ -79,7 +91,9 @@ final public class WNAffect {
             parent = Emotion.getInstance().getParent(parent);
         }
         parents.add("root");
-        if (level >= parents.size()) return Lists.reverse(parents).get(parents.size() - 1);
-        else return Lists.reverse(parents).get(level);
+        parents = Lists.reverse(parents);
+        if (WNAffectConfiguration.getInstance().useCache()) emotionsPath.put(emotion, parents);
+        if (level >= parents.size()) return parents.get(parents.size() - 1);
+        else return parents.get(level);
     }
 }

@@ -3,6 +3,7 @@ package edu.uniba.di.lacam.kdde.util;
 final public class WNAffectConfiguration {
 
     private boolean memoryDB;
+    private boolean cache;
 
     private static final WNAffectConfiguration wnAffectConfiguration = new WNAffectConfiguration();
 
@@ -16,5 +17,13 @@ final public class WNAffectConfiguration {
 
     public void setMemoryDB(boolean memoryDB) {
         this.memoryDB = memoryDB;
+    }
+
+    public boolean useCache() {
+        return cache;
+    }
+
+    public void setCache(boolean cache) {
+        this.cache = cache;
     }
 }
