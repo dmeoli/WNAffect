@@ -27,7 +27,7 @@ final public class WNAffect {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(WNAffect.class);
 
-    private static final String WORDNET = "wn30.dict";
+    private static final String WORDNET_FILE = "wn30.dict";
 
     private static IRAMDictionary dict;
     private static ConcurrentMap<String, ConcurrentMap<Integer, String>> emotionsParents;
@@ -51,14 +51,18 @@ final public class WNAffect {
             LOGGER.info("Loading WordNet into memory...");
             long t = System.currentTimeMillis();
             dict = new RAMDictionary(Objects.requireNonNull(
-                    WNAffect.class.getClassLoader().getResource(WORDNET)), ILoadPolicy.IMMEDIATE_LOAD);
+                    WNAffect.class.getClassLoader().getResource(WORDNET_FILE)), ILoadPolicy.IMMEDIATE_LOAD);
             dict.open();
             LOGGER.info("WordNet loaded into memory in {} sec.", (System.currentTimeMillis() - t) / 1000L);
         } else {
             dict = new RAMDictionary(Objects.requireNonNull(
-                    WNAffect.class.getClassLoader().getResource(WORDNET)), ILoadPolicy.NO_LOAD);
+                    WNAffect.class.getClassLoader().getResource(WORDNET_FILE)), ILoadPolicy.NO_LOAD);
             dict.open();
         }
+    }
+
+    public static IRAMDictionary getDictionary() {
+        return dict;
     }
 
     private List<IWordID> getSynsets(String lemma, POS pos) {
