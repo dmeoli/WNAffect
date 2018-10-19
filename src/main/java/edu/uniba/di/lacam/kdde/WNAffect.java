@@ -63,7 +63,7 @@ final public class WNAffect {
 
     private List<IWordID> getSynsets(String lemma, POS pos) {
         IIndexWord indexWord = dict.getIndexWord(lemma, POS.getPartOfSpeech(pos.getTag()));
-        return indexWord != null ? indexWord.getWordIDs() : Collections.emptyList();
+        return Objects.nonNull(indexWord) ? indexWord.getWordIDs() : Collections.emptyList();
     }
 
     public String getEmotion(String lemma, POS pos) {
@@ -77,7 +77,7 @@ final public class WNAffect {
     }
 
     public String getParent(String emotion, int level) {
-        if (emotion == null || emotion.equalsIgnoreCase(ROOT) || level < 0) return null;
+        if (Objects.isNull(emotion) || emotion.equalsIgnoreCase(ROOT) || level < 0) return null;
         if (WNAffectConfiguration.getInstance().useCache()) {
             ConcurrentMap<Integer, String> emotionParent = emotionsParents.get(emotion);
             if (Objects.nonNull(emotionParent)) {
@@ -88,7 +88,7 @@ final public class WNAffect {
         List<String> parents = new ArrayList<>();
         parents.add(emotion);
         String parent = Emotion.getInstance().getParent(emotion);
-        while (parent != null && !parent.equalsIgnoreCase(ROOT)) {
+        while (Objects.nonNull(parent) && !parent.equalsIgnoreCase(ROOT)) {
             parents.add(parent);
             parent = Emotion.getInstance().getParent(parent);
         }
