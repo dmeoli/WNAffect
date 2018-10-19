@@ -61,7 +61,7 @@ final public class WNAffect {
         }
     }
 
-    public static IRAMDictionary getDictionary() {
+    public IRAMDictionary getDictionary() {
         return dict;
     }
 
