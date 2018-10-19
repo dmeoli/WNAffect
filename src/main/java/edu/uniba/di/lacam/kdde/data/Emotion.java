@@ -15,6 +15,8 @@ final public class Emotion {
 
     private static final InputStream EMOTION = Emotion.class.getClassLoader().getResourceAsStream("a-hierarchy.xml");
 
+    public static final String ROOT = "root";
+
     private static Map<String, String> emotions;
 
     private static final Emotion emotion = new Emotion();
@@ -35,7 +37,7 @@ final public class Emotion {
         for (int i = 0; i < categories.getLength(); i++) {
             Element category = (Element) categories.item(i);
             String name = category.getAttribute("name");
-            if (name.equals("root")) emotions.put("root", null);
+            if (name.equals(ROOT)) emotions.put(ROOT, null);
             else emotions.put(name, category.getAttribute("isa"));
         }
     }

@@ -22,6 +22,8 @@ import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
+import static edu.uniba.di.lacam.kdde.data.Emotion.ROOT;
+
 final public class WNAffect {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(WNAffect.class);
@@ -29,7 +31,7 @@ final public class WNAffect {
     private static final URL WORDNET = WNAffect.class.getClassLoader().getResource("wn30.dict");
 
     private static IRAMDictionary dict;
-    private static ConcurrentMap<String, List<String>> emotionsPath;
+    private static ConcurrentMap<String, ConcurrentMap<Integer, String>> emotionsParents;
 
     private static WNAffect wnAffect = new WNAffect();
 
@@ -39,7 +41,7 @@ final public class WNAffect {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        if (WNAffectConfiguration.getInstance().useCache()) emotionsPath = new ConcurrentHashMap<>();
+        if (WNAffectConfiguration.getInstance().useCache()) emotionsParents = new ConcurrentHashMap<>();
     }
 
     private void loadWordNet() throws IOException {
@@ -75,25 +77,31 @@ final public class WNAffect {
     }
 
     public String getParent(String emotion, int level) {
-        if (emotion == null || emotion.equalsIgnoreCase("root") || level < 0) return null;
+        if (emotion == null || emotion.equalsIgnoreCase(ROOT) || level < 0) return null;
         if (WNAffectConfiguration.getInstance().useCache()) {
-            List<String> path = emotionsPath.get(emotion);
-            if (Objects.nonNull(path)) {
-                if (level >= path.size()) return path.get(path.size() - 1);
-                else return path.get(level);
+            ConcurrentMap<Integer, String> emotionParent = emotionsParents.get(emotion);
+            if (Objects.nonNull(emotionParent)) {
+                String parent = emotionParent.get(level);
+                if (Objects.nonNull(parent)) return parent;
             }
         }
         List<String> parents = new ArrayList<>();
         parents.add(emotion);
         String parent = Emotion.getInstance().getParent(emotion);
-        while (parent != null && !parent.equalsIgnoreCase("root")) {
+        while (parent != null && !parent.equalsIgnoreCase(ROOT)) {
             parents.add(parent);
             parent = Emotion.getInstance().getParent(parent);
         }
-        parents.add("root");
+        parents.add(ROOT);
         parents = Lists.reverse(parents);
-        if (WNAffectConfiguration.getInstance().useCache()) emotionsPath.put(emotion, parents);
-        if (level >= parents.size()) return parents.get(parents.size() - 1);
-        else return parents.get(level);
+        parent = level >= parents.size() ? parents.get(parents.size() - 1) : parents.get(level);
+        if (WNAffectConfiguration.getInstance().useCache()) {
+            ConcurrentMap<Integer, String> emotionParent = emotionsParents.get(emotion);
+            if (Objects.nonNull(emotionParent)) {
+                emotionParent.put(level, parent);
+                emotionsParents.put(emotion, emotionParent);
+            } else emotionsParents.put(emotion, new ConcurrentHashMap<>(Collections.singletonMap(level, parent)));
+        }
+        return parent;
     }
 }
