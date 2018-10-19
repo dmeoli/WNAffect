@@ -14,7 +14,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -28,14 +27,17 @@ final public class WNAffect {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(WNAffect.class);
 
-    private static final URL WORDNET = WNAffect.class.getClassLoader().getResource("wn30.dict");
+    private static final String WORDNET = "wn30.dict";
 
     private static IRAMDictionary dict;
     private static ConcurrentMap<String, ConcurrentMap<Integer, String>> emotionsParents;
 
-    private static WNAffect wnAffect = new WNAffect();
+    public WNAffect(IRAMDictionary dict) {
+        WNAffect.dict = dict;
+        if (WNAffectConfiguration.getInstance().useCache()) emotionsParents = new ConcurrentHashMap<>();
+    }
 
-    private WNAffect() {
+    public WNAffect() {
         try {
             loadWordNet();
         } catch (IOException e) {
@@ -48,17 +50,15 @@ final public class WNAffect {
         if (WNAffectConfiguration.getInstance().useMemoryDB()) {
             LOGGER.info("Loading WordNet into memory...");
             long t = System.currentTimeMillis();
-            dict = new RAMDictionary(WORDNET, ILoadPolicy.IMMEDIATE_LOAD);
+            dict = new RAMDictionary(Objects.requireNonNull(
+                    WNAffect.class.getClassLoader().getResource(WORDNET)), ILoadPolicy.IMMEDIATE_LOAD);
             dict.open();
             LOGGER.info("WordNet loaded into memory in {} sec.", (System.currentTimeMillis() - t) / 1000L);
         } else {
-            dict = new RAMDictionary(WORDNET, ILoadPolicy.NO_LOAD);
+            dict = new RAMDictionary(Objects.requireNonNull(
+                    WNAffect.class.getClassLoader().getResource(WORDNET)), ILoadPolicy.NO_LOAD);
             dict.open();
         }
-    }
-
-    public static WNAffect getInstance() {
-        return wnAffect;
     }
 
     private List<IWordID> getSynsets(String lemma, POS pos) {
