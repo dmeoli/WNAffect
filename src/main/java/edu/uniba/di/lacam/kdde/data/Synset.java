@@ -10,14 +10,14 @@ import org.xml.sax.SAXException;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
-import java.io.ObjectInputStream;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
 final public class Synset {
 
-    private static final String SYNSET_FILENAME = "a-synsets-30";
+    private static final InputStream SYNSET = Synset.class.getClassLoader().getResourceAsStream("a-synsets-30.xml");
 
     private static final ImmutableMap<String, POS> posTags = ImmutableMap.of(
             "noun", POS.NOUN, "adj", POS.ADJECTIVE, "verb", POS.VERB, "adv", POS.ADVERB);
@@ -28,23 +28,15 @@ final public class Synset {
 
     private Synset() {
         try {
-            loadSynsetsFromFile();
-        } catch (IOException | ClassNotFoundException e) {
+            loadSynsets();
+        } catch (ParserConfigurationException | IOException | SAXException e) {
             e.printStackTrace();
         }
     }
 
-    synchronized private void loadSynsetsFromFile() throws IOException, ClassNotFoundException {
-        ObjectInputStream objIn = new ObjectInputStream(
-                Emotion.class.getClassLoader().getResourceAsStream(SYNSET_FILENAME));
-        synsets = (Map<POS, Map<Integer, String>>) objIn.readObject();
-        objIn.close();
-    }
-
-    synchronized private void loadSynsetsFromXml() throws ParserConfigurationException, IOException, SAXException {
+    synchronized private void loadSynsets() throws ParserConfigurationException, IOException, SAXException {
         synsets = new HashMap<>();
-        Document doc = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(
-                Emotion.class.getClassLoader().getResourceAsStream(SYNSET_FILENAME + ".xml"));
+        Document doc = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(SYNSET);
         doc.getDocumentElement().normalize();
         posTags.keySet().forEach(pos -> {
             Map<Integer, String> synset = new HashMap<>();

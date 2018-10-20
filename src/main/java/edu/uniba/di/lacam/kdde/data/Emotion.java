@@ -7,12 +7,13 @@ import org.xml.sax.SAXException;
 
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-import java.io.*;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.*;
 
 final public class Emotion {
 
-    private static final String EMOTION_FILENAME = "a-hierarchy";
+    private static final InputStream EMOTION = Emotion.class.getClassLoader().getResourceAsStream("a-hierarchy.xml");
 
     public static final String ROOT = "root";
 
@@ -22,23 +23,15 @@ final public class Emotion {
 
     private Emotion() {
         try {
-            loadEmotionsFromFile();
-        } catch (IOException | ClassNotFoundException e) {
+            loadEmotions();
+        } catch (ParserConfigurationException | IOException | SAXException e) {
             e.printStackTrace();
         }
     }
 
-    synchronized private void loadEmotionsFromFile() throws IOException, ClassNotFoundException {
-        ObjectInputStream objIn = new ObjectInputStream(
-                Emotion.class.getClassLoader().getResourceAsStream(EMOTION_FILENAME));
-        emotions = (Map<String, String>) objIn.readObject();
-        objIn.close();
-    }
-
-    synchronized private void loadEmotionsFromXml() throws ParserConfigurationException, IOException, SAXException {
+    synchronized private void loadEmotions() throws ParserConfigurationException, IOException, SAXException {
         emotions = new HashMap<>();
-        Document doc = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(
-                Emotion.class.getClassLoader().getResourceAsStream(EMOTION_FILENAME + ".xml"));
+        Document doc = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(EMOTION);
         doc.getDocumentElement().normalize();
         NodeList categories = doc.getElementsByTagName("categ");
         for (int i = 0; i < categories.getLength(); i++) {
