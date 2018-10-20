@@ -46,7 +46,7 @@ final public class WNAffect {
         if (WNAffectConfiguration.getInstance().useCache()) emotionsParents = new ConcurrentHashMap<>();
     }
 
-    private void loadWordNet() throws IOException {
+    synchronized private void loadWordNet() throws IOException {
         if (WNAffectConfiguration.getInstance().useMemoryDB()) {
             LOGGER.info("Loading WordNet into memory...");
             long t = System.currentTimeMillis();
