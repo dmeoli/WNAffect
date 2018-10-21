@@ -38,15 +38,15 @@ extension of [WordNet Domains](http://wndomains.fbk.eu/index.html), based on
                                   │       │                 │                     └fever┐
                                   │       │                 │                           └buck-fever
                                   │       ├ambiguous-emotion┤
+                                  │       │                 │                   
                                   │       │                 │                   ┌unrest
-                                  │       │                 │                   ├tumult
                                   │       │                 ├ambiguous-agitation┤
-                                  │       │                 │                   │    ┌electricity
-                                  │       │                 │                   └stir┤
-                                  │       │                 │                        └sensation
+                                  │       │                 │                   │    
+                                  │       │                 │                   └stir┐
+                                  │       │                 │                        └electricity
                                   │       │                 └surprise┐
-                                  │       │                          │            ┌surprise
-                                  │       │                          │            ├stupefaction
+                                  │       │                          │            
+                                  │       │                          │            ┌stupefaction
                                   │       │                          └astonishment┤
                                   │       │                                       └wonder┐
                                   │       │                                              └awe
@@ -71,8 +71,8 @@ extension of [WordNet Domains](http://wndomains.fbk.eu/index.html), based on
                                   │       │                ├affection┤
                                   │       │                │         ├soft-spot
                                   │       │                │         └regard
+                                  │       │                │          
                                   │       │                │          ┌gusto
-                                  │       │                │          ├exuberance
                                   │       │                ├enthusiasm┤
                                   │       │                │          └eagerness┐
                                   │       │                │                    └enthusiasm-ardor
@@ -181,10 +181,10 @@ extension of [WordNet Domains](http://wndomains.fbk.eu/index.html), based on
                                           │                │                   ├discomfiture
                                           │                │                   ├abashment
                                           │                │                   └confusion
-                                          │                │       ┌discomfiture
-                                          │                │       ├distress
+                                          │                │       
+                                          │                │       
+                                          │                │       ┌distress
                                           │                │       ├negative-concern
-                                          │                │       ├anxiousness
                                           │                │       ├insecurity
                                           │                │       ├edginess
                                           │                │       ├sinking
@@ -318,6 +318,7 @@ extension of [WordNet Domains](http://wndomains.fbk.eu/index.html), based on
                                                                               └despondency┐
                                                                                           └blue-devils
 ```
+*(printed using [pptree](https://github.com/clemtoy/pptree))*
 
 ## Prerequisites
 

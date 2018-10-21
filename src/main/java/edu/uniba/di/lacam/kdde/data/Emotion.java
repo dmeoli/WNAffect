@@ -46,6 +46,10 @@ final public class Emotion {
         return emotion;
     }
 
+    public Set<String> getEmotions() {
+        return emotions.keySet();
+    }
+
     public String getParent(String emotion) {
         return emotions.get(emotion);
     }

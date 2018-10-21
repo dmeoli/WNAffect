@@ -8,7 +8,7 @@ public class WNAffectDemo {
 
     static {
         WNAffectConfiguration.getInstance().setMemoryDB(false);
-        WNAffectConfiguration.getInstance().setCache(false);
+        WNAffectConfiguration.getInstance().setCache(true);
     }
 
     public static void main(String[] args) {

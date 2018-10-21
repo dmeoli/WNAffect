@@ -116,7 +116,6 @@
 
     <categ name="gusto" isa="enthusiasm"/>
     <categ name="eagerness" isa="enthusiasm"/>
-    <categ name="exuberance" isa="enthusiasm"/>
 
     <categ name="enthusiasm-ardor" isa="eagerness"/>
 
@@ -358,11 +357,9 @@
 
     <categ name="cynicism" isa="pessimism"/>
 
-    <categ name="discomfiture" isa="anxiety"/>
     <categ name="negative-agitation" isa="anxiety"/>
     <categ name="distress" isa="anxiety"/>
     <categ name="negative-concern" isa="anxiety"/>
-    <categ name="anxiousness" isa="anxiety"/>
     <categ name="insecurity" isa="anxiety"/>
     <categ name="edginess" isa="anxiety"/>
     <categ name="sinking" isa="anxiety"/>
@@ -402,17 +399,14 @@
     <categ name="astonishment" isa="surprise"/>
 
     <categ name="wonder" isa="astonishment"/>
-    <categ name="surprise" isa="astonishment"/>
     <categ name="stupefaction" isa="astonishment"/>
 
     <categ name="awe" isa="wonder"/>
 
     <categ name="unrest" isa="ambiguous-agitation"/>
     <categ name="stir" isa="ambiguous-agitation"/>
-    <categ name="tumult" isa="ambiguous-agitation"/>
 
     <categ name="electricity" isa="stir"/>
-    <categ name="sensation" isa="stir"/>
 
     <categ name="reverence" isa="ambiguous-fear"/>
 
