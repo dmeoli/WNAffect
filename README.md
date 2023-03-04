@@ -1,4 +1,4 @@
-# WordNet Affect [![Build Status](https://travis-ci.org/dmeoli/WNAffect.svg?branch=master)](https://travis-ci.org/dmeoli/WNAffect) [![Release](https://jitpack.io/v/dmeoli/WNAffect.svg)](https://jitpack.io/#dmeoli/WNAffect)
+# WordNet Affect [![Build Status](https://api.travis-ci.com/dmeoli/WNAffect.svg?branch=master)](https://app.travis-ci.com/github/dmeoli/WNAffect) [![Release](https://jitpack.io/v/dmeoli/WNAffect.svg)](https://jitpack.io/#dmeoli/WNAffect)
 
 WNAffect allows to find the emotion of a given word using [WordNet Affect](http://wndomains.fbk.eu/wnaffect.html): an 
 extension of [WordNet Domains](http://wndomains.fbk.eu/index.html), based on 
