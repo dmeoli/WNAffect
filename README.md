@@ -1,6 +1,6 @@
 # WordNet Affect [![Build Status](https://api.travis-ci.com/dmeoli/WNAffect.svg?branch=master)](https://app.travis-ci.com/github/dmeoli/WNAffect) [![Release](https://jitpack.io/v/dmeoli/WNAffect.svg)](https://jitpack.io/#dmeoli/WNAffect)
 
-WNAffect allows to find the emotion of a given word using [WordNet Affect](http://wndomains.fbk.eu/wnaffect.html): an 
+WNAffect allows one to find the emotion of a given word using [WordNet Affect](http://wndomains.fbk.eu/wnaffect.html): an 
 extension of [WordNet Domains](http://wndomains.fbk.eu/index.html), based on 
 [Princeton's English WordNet 3.0](https://wordnet.princeton.edu/), which provides a set of emotional words organized in a tree:
 
@@ -322,7 +322,7 @@ extension of [WordNet Domains](http://wndomains.fbk.eu/index.html), based on
 
 ## Prerequisites
 
-By default, requirement for compilation are:
+By default, the requirements for compilation are:
 
  - JDK 8+
  - Maven
@@ -346,11 +346,11 @@ When using WS4J jar package from other projects add the [JitPack](https://jitpac
         </repository>
     </repositories>
     
-and declare this github repo as a dependency:
+and declare this GitHub repo as a dependency:
     
     <dependencies>
         <dependency>
-            <groupId>com.github.DonatoMeoli</groupId>
+            <groupId>com.github.dmeoli</groupId>
             <artifactId>WNAffect</artifactId>
             <version>x.y.z</version>
         </dependency>
