@@ -1,4 +1,8 @@
-# WordNet Affect [![Build Status](https://api.travis-ci.com/dmeoli/WNAffect.svg?branch=master)](https://app.travis-ci.com/github/dmeoli/WNAffect) [![Release](https://jitpack.io/v/dmeoli/WNAffect.svg)](https://jitpack.io/#dmeoli/WNAffect)
+# WordNet Affect
+
+[![CI](https://github.com/dmeoli/WNAffect/actions/workflows/ci.yml/badge.svg)](https://github.com/dmeoli/WNAffect/actions/workflows/ci.yml)
+[![Release](https://jitpack.io/v/dmeoli/WNAffect.svg)](https://jitpack.io/#dmeoli/WNAffect)
+[![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
 WNAffect allows one to find the emotion of a given word using [WordNet Affect](http://wndomains.fbk.eu/wnaffect.html): an 
 extension of [WordNet Domains](http://wndomains.fbk.eu/index.html), based on 
@@ -356,6 +360,6 @@ and declare this GitHub repo as a dependency:
         </dependency>
     </dependencies>
     
-## License [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+## License
 
 This software is released under GNU GPL v3 License. See the [LICENSE](LICENSE) file for details.
